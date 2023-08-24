@@ -1,0 +1,347 @@
+# mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.11-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mini               |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+6 rows in set (0.063 sec)
+
+MariaDB [(none)]> use mini;
+Database changed
+MariaDB [mini]> show tables;
+Empty set (0.001 sec)
+
+MariaDB [mini]> create table course(subcode varchar(20) primary key,subject varchar(100));
+Query OK, 0 rows affected (0.213 sec)
+
+MariaDB [mini]> select * from course;
++---------+----------------------+
+| subcode | subject              |
++---------+----------------------+
+| 125EM   | Software Engineering |
++---------+----------------------+
+1 row in set (0.000 sec)
+
+MariaDB [mini]> select * from course;
++---------+-------------------------------------------+
+| subcode | subject                                   |
++---------+-------------------------------------------+
+| 125EM   | Software Engineering                      |
+| 134AG   | Business Economics and Financial Analysis |
+| 134AK   | Computer Organization                     |
+| 134AP   | Database Management Systems               |
+| 134BD   | Formal Languages and Automated Theory     |
+| 134BU   | Operating Systems                         |
+| 135AE   | Data Communications and Computer Networks |
++---------+-------------------------------------------+
+7 rows in set (0.001 sec)
+
+MariaDB [mini]> select * from course;
++---------+-------------------------------------------+
+| subcode | subject                                   |
++---------+-------------------------------------------+
+| 125EM   | Software Engineering                      |
+| 134AG   | Business Economics and Financial Analysis |
+| 134AK   | Computer Organization                     |
+| 134AP   | Database Management Systems               |
+| 134BD   | Formal Languages and Automated Theory     |
+| 134BU   | Operating Systems                         |
+| 135AE   | Data Communications and Computer Networks |
+| 135AF   | Design and Analysis of Algorithms         |
+| 135AR   | Fundamentals of Management                |
++---------+-------------------------------------------+
+9 rows in set (0.000 sec)
+
+MariaDB [mini]> create table dept(deptid int(10) primary key,deptname varchar(75));
+Query OK, 0 rows affected (0.300 sec)
+
+MariaDB [mini]> select * from dept;
++--------+---------------------------------------+
+| deptid | deptname                              |
++--------+---------------------------------------+
+|      2 | Electrical and Electronic Engineering |
++--------+---------------------------------------+
+1 row in set (0.001 sec)
+
+MariaDB [mini]> select * from dept;
++--------+-------------------------------------------+
+| deptid | deptname                                  |
++--------+-------------------------------------------+
+|      2 | Electrical and Electronic Engineering     |
+|      4 | Electronics and Communication Engineering |
+|      5 | Computer Science Engineering              |
++--------+-------------------------------------------+
+3 rows in set (0.001 sec)
+
+MariaDB [mini]> select * from dept;
++--------+-------------------------------------------+
+| deptid | deptname                                  |
++--------+-------------------------------------------+
+|      2 | Electrical and Electronic Engineering     |
+|      4 | Electronics and Communication Engineering |
+|      5 | Computer Science Engineering              |
+|     12 | Information Technology                    |
+|     17 | Electronics and Telematics Engineering    |
++--------+-------------------------------------------+
+5 rows in set (0.001 sec)
+
+MariaDB [mini]> create table empdetails(empid varchar(40) primary key,name varchar(100),department varchar(10),position varchar(75),mail varchar(100),gender 
+varchar(20));
+Query OK, 0 rows affected (0.329 sec)
+
+MariaDB [mini]> create table login(username varchar(30),password varchar(50));
+Query OK, 0 rows affected (0.353 sec)
+
+MariaDB [mini]> insert into login values("mini","mini123");
+Query OK, 1 row affected (0.109 sec)
+
+MariaDB [mini]> select * from login;
++----------+----------+
+| username | password |
++----------+----------+
+| mini     | mini123  |
++----------+----------+
+1 row in set (0.001 sec)
+
+MariaDB [mini]> insert into login values("Admin_gnits","admin@aqp");
+Query OK, 1 row affected (0.107 sec)
+
+MariaDB [mini]> select * from login;
++-------------+-----------+
+| username    | password  |
++-------------+-----------+
+| mini        | mini123   |
+| Admin_gnits | admin@aqp |
++-------------+-----------+
+2 rows in set (0.001 sec)
+
+MariaDB [mini]> create table questions(qid varchar(20) primary key,question varchar(1500),subjectcode varchar(10),subject varchar(100),level varchar(30),marks 
+int(5),semester varchar(5),year varchar(5),unitno int(5));
+Query OK, 0 rows affected (0.364 sec)
+
+MariaDB [mini]> create table reglogin(uname varchar(30),pwd varchar(50));
+Query OK, 0 rows affected (0.264 sec)
+
+MariaDB [mini]> create table validstaff(empid varchar(40) primary key,name varchar(100),department varchar(50),position varchar(75),mail varchar(100),gender varchar(20),username varchar(25),password varchar(25));
+s affected (0.194 sec)
+
+>> insert into validstaff values("17251A1274","Mandali Srivarini","Information Technology","Student","srivarini.mandali@gmail.com","Female","varini_mandali","varini123");
+ affected (0.029 sec)
+
+>> insert into validstaff values("1","Team Mini Project","CSE","Software Developer","miniproject@gmail.com","Female","mini","mini123");
+ affected (0.015 sec)
+
+MariaDB [mini]> select * from dept;
++--------+-------------------------------------------+
+| deptid | deptname                                  |
++--------+-------------------------------------------+
+|      2 | Electrical and Electronic Engineering     |
+|      4 | Electronics and Communication Engineering |
+|      5 | Computer Science Engineering              |
+|     12 | Information Technology                    |
+|     17 | Electronics and Telematics Engineering    |
++--------+-------------------------------------------+
+5 rows in set (0.001 sec)
+
+MariaDB [mini]> alter table dept add status varchar(10);
+Query OK, 0 rows affected (0.079 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [mini]> select * from dept;
++--------+-------------------------------------------+--------+
+| deptid | deptname                                  | status |
++--------+-------------------------------------------+--------+
+|      2 | Electrical and Electronic Engineering     | NULL   |
+|      4 | Electronics and Communication Engineering | NULL   |
+|      5 | Computer Science Engineering              | NULL   |
+|     12 | Information Technology                    | NULL   |
+|     17 | Electronics and Telematics Engineering    | NULL   |
++--------+-------------------------------------------+--------+
+5 rows in set (0.001 sec)
+
+MariaDB [mini]> update dept set status="y" WHERE deptid="2" ;
+Query OK, 1 row affected (0.037 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [mini]> select * from dept;
++--------+-------------------------------------------+--------+
+| deptid | deptname                                  | status |
++--------+-------------------------------------------+--------+
+|      2 | Electrical and Electronic Engineering     | y      |
+|      4 | Electronics and Communication Engineering | NULL   |
+|      5 | Computer Science Engineering              | NULL   |
+|     12 | Information Technology                    | NULL   |
+|     17 | Electronics and Telematics Engineering    | NULL   |
++--------+-------------------------------------------+--------+
+5 rows in set (0.001 sec)
+
+MariaDB [mini]> update dept set status="y" WHERE deptid="4" ;
+Query OK, 1 row affected (0.037 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [mini]> update dept set status="y" WHERE deptid="5" ;
+Query OK, 1 row affected (0.041 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [mini]> update dept set status="y" WHERE deptid="12" ;
+Query OK, 1 row affected (0.066 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [mini]> update dept set status="y" WHERE deptid="12" ;
+Query OK, 0 rows affected (0.001 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+MariaDB [mini]> update dept set status="y" WHERE deptid="17" ;
+Query OK, 1 row affected (0.044 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [mini]> select * from dept;
++--------+-------------------------------------------+--------+
+| deptid | deptname                                  | status |
++--------+-------------------------------------------+--------+
+|      2 | Electrical and Electronic Engineering     | y      |
+|      4 | Electronics and Communication Engineering | y      |
+|      5 | Computer Science Engineering              | y      |
+|     12 | Information Technology                    | y      |
+|     17 | Electronics and Telematics Engineering    | y      |
++--------+-------------------------------------------+--------+
+5 rows in set (0.001 sec)
+
+MariaDB [mini]> insert into dept values(1,"Civil Engineering","y");
+Query OK, 1 row affected (0.071 sec)
+
+MariaDB [mini]> insert into dept values(3,"Mechanical Engineering","n");
+Query OK, 1 row affected (0.033 sec)
+
+MariaDB [mini]> select * from dept;
++--------+-------------------------------------------+--------+
+| deptid | deptname                                  | status |
++--------+-------------------------------------------+--------+
+|      1 | Civil Engineering                         | y      |
+|      2 | Electrical and Electronic Engineering     | y      |
+|      3 | Mechanical Engineering                    | n      |
+|      4 | Electronics and Communication Engineering | y      |
+|      5 | Computer Science Engineering              | y      |
+|     12 | Information Technology                    | y      |
+|     17 | Electronics and Telematics Engineering    | y      |
++--------+-------------------------------------------+--------+
+7 rows in set (0.001 sec)
+
+MariaDB [mini]> update dept set status="n" WHERE deptid="3" ;
+Query OK, 0 rows affected (0.001 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+MariaDB [mini]> update dept set status="n" WHERE deptid="1" ;
+Query OK, 1 row affected (0.047 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [mini]> select * from dept;
++--------+-------------------------------------------+--------+
+| deptid | deptname                                  | status |
++--------+-------------------------------------------+--------+
+|      1 | Civil Engineering                         | n      |
+|      2 | Electrical and Electronic Engineering     | y      |
+|      3 | Mechanical Engineering                    | n      |
+|      4 | Electronics and Communication Engineering | y      |
+|      5 | Computer Science Engineering              | y      |
+|     12 | Information Technology                    | y      |
+|     17 | Electronics and Telematics Engineering    | y      |
++--------+-------------------------------------------+--------+
+7 rows in set (0.001 sec)
+
+MariaDB [mini]> insert into dept values(10,"Electronics and Instrumentation Engineering","n");
+Query OK, 1 row affected (0.061 sec)
+
+MariaDB [mini]> insert into dept values(11,"Bio-Medical Engineering","n");
+Query OK, 1 row affected (0.031 sec)
+
+MariaDB [mini]> insert into dept values(14,"Mechanical Engineering(Mechatronics)","n");
+Query OK, 1 row affected (0.023 sec)
+
+MariaDB [mini]> insert into dept values(18,"Metallurical and Materials Engineering","n");
+Query OK, 1 row affected (0.023 sec)
+
+MariaDB [mini]> insert into dept values(19,"Electronics and Computer Engineering","n");
+Query OK, 1 row affected (0.040 sec)
+
+MariaDB [mini]> insert into dept values(20,"Aeronautical Engineering","n");
+Query OK, 1 row affected (0.029 sec)
+
+MariaDB [mini]> delete from dept where deptid=20
+    -> ;
+Query OK, 1 row affected (0.024 sec)
+
+MariaDB [mini]> insert into dept values(21,"Aeronautical Engineering","n");
+Query OK, 1 row affected (0.031 sec)
+
+MariaDB [mini]> insert into dept values(24,"Automobile Engineering","n");
+Query OK, 1 row affected (0.029 sec)
+
+MariaDB [mini]> insert into dept values(25,"Mining Engineering","n");
+Query OK, 1 row affected (0.020 sec)
+
+MariaDB [mini]> insert into dept values(27,"Petroleum Engineering","n");
+Query OK, 1 row affected (0.017 sec)
+
+MariaDB [mini]> insert into dept values(28,"Civil & Environmental Engineering","n");
+Query OK, 1 row affected (0.030 sec)
+
+MariaDB [mini]> insert into dept values(2,"Mechanical Engineering (Material Science & Nano Technology)","n");
+ERROR 1062 (23000): Duplicate entry '2' for key 'PRIMARY'
+MariaDB [mini]> insert into dept values(29,"Mechanical Engineering (Material Science & Nano Technology)","n");
+Query OK, 1 row affected (0.029 sec)
+
+MariaDB [mini]> select * from dept;
++--------+-------------------------------------------------------------+--------+
+| deptid | deptname                                                    | status |
++--------+-------------------------------------------------------------+--------+
+|      1 | Civil Engineering                                           | n      |
+|      2 | Electrical and Electronic Engineering                       | y      |
+|      3 | Mechanical Engineering                                      | n      |
+|      4 | Electronics and Communication Engineering                   | y      |
+|      5 | Computer Science Engineering                                | y      |
+|     10 | Electronics and Instrumentation Engineering                 | n      |
+|     11 | Bio-Medical Engineering                                     | n      |
+|     12 | Information Technology                                      | y      |
+|     14 | Mechanical Engineering(Mechatronics)                        | n      |
+|     17 | Electronics and Telematics Engineering                      | y      |
+|     18 | Metallurical and Materials Engineering                      | n      |
+|     19 | Electronics and Computer Engineering                        | n      |
+|     21 | Aeronautical Engineering                                    | n      |
+|     24 | Automobile Engineering                                      | n      |
+|     25 | Mining Engineering                                          | n      |
+|     27 | Petroleum Engineering                                       | n      |
+|     28 | Civil & Environmental Engineering                           | n      |
+|     29 | Mechanical Engineering (Material Science & Nano Technology) | n      |
++--------+-------------------------------------------------------------+--------+
+18 rows in set (0.001 sec)
+
+MariaDB [mini]> create table empdetails(empid varchar(40) primary key,name varchar(100),department varchar(50),position varchar(75),mail varchar(100),gender varchar(20),username varchar(25),password varchar(25));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
